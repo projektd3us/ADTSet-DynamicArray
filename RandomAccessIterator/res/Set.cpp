@@ -93,8 +93,11 @@ void Set::print() const
 }
 
 
+SetIterator Set::iterator(int firstPos, int step) const {
+	return SetIterator(*this, firstPos, step);
+}
+
 SetIterator Set::iterator() const {
 	return SetIterator(*this);
 }
-
 

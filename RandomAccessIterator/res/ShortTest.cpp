@@ -3,6 +3,8 @@
 #include "Set.h"
 #include "SetIterator.h"
 
+#include <iostream>
+
 void testAll() { 
 	Set s;
 	assert(s.isEmpty() == true);
@@ -21,8 +23,8 @@ void testAll() {
 	assert(s.remove(6) == false);
 	assert(s.size() == 4);
 
-
-	SetIterator it = s.iterator();
+	// positive step
+	SetIterator it = s.iterator(0, 1);
 	it.first();
 	int sum = 0;
 	while (it.valid()) {
@@ -32,5 +34,15 @@ void testAll() {
 	}
 	assert(sum == 19);
 
+	// negative step
+	SetIterator itN = s.iterator(2, -1);
+	itN.first();
+	int sum2 = 0;
+	while (itN.valid()) {
+		TElem e2 = itN.getCurrent();
+		sum2 += e2;
+		itN.next();
+	}
+	assert(sum2 == 22);
 }
 

@@ -40,6 +40,7 @@ public:
 	bool isEmpty() const;
 
 	//return an iterator for the set
+	SetIterator iterator(int firstPos, int step) const;
 	SetIterator iterator() const;
 
 	// destructor
