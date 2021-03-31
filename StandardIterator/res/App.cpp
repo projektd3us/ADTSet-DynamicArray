@@ -8,20 +8,10 @@ using namespace std;
 
 
 
-
 int main() {
 
 	testAll();
-	//testAllExtended();
-
-	//Set s;
-	//s.add(5);
-	//s.add(3);
-	//s.add(3);
-	//s.add(3);
-	//s.add(4);
-	//s.remove(3);
-	//s.print();
+	testAllExtended();
 
 	cout << "That's all!" << endl;
 	system("pause");

@@ -11,7 +11,7 @@ SetIterator::SetIterator(const Set& m) : set(m)
 
 void SetIterator::first() {
 	this->current = 0;
-}
+} // All Cases: Theta(1)
 
 
 void SetIterator::next() {
@@ -21,7 +21,7 @@ void SetIterator::next() {
 	else {
 		this->current++;
 	}
-}
+} // All Cases: Theta(1)
 
 
 TElem SetIterator::getCurrent()
@@ -30,14 +30,14 @@ TElem SetIterator::getCurrent()
 		throw exception();
 	}
 	return this->set.arr[this->current];
-}
+} // All Cases: Theta(1)
 
 bool SetIterator::valid() const {
 	if (this->current < this->set.length) {
 		return true;
 	}
 	return false;
-}
+} // All Cases: Theta(1)
 
 
 
