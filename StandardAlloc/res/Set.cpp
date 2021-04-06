@@ -15,7 +15,7 @@ void Set::remPlace(int pos) { // function to remove item at pos in array
 Set::Set() {
 	this->capacity = 2;
 	this->length = 0;
-	this->arr = (TElem*)malloc(100 * sizeof(TElem)); // does not use new, therefore realloc is ok
+	this->arr = new TElem[capacity]; // does not use new, therefore realloc is ok
 }
 
 
@@ -27,9 +27,18 @@ bool Set::add(TElem elem) {
 	else {
 		//if cap full realloc
 		if (this->capacity == this->length) {
-			int newCapacity = this->capacity * 2;
-			this->arr = (TElem*)realloc(this->arr, newCapacity * sizeof(TElem)); // use of realloc is ok
-			this->capacity = newCapacity;
+			if (capacity == 0) { // setting cap if 0 to 1
+				capacity = 1;
+			}
+			else {
+				capacity *= 2;
+			}
+			TElem* temp_arr = new TElem[this->capacity]; // creating new arr
+			for (int i = 0; i <= this->length - 1; i++) { // copying arr contents
+				temp_arr[i] = this->arr[i];
+			}
+			delete[] this->arr;
+			this->arr = temp_arr;
 		}
 		this->arr[this->length] = elem; // add to set
 		this->length++; // change element number
@@ -52,9 +61,17 @@ bool Set::remove(TElem elem) { // fakes removal by shortening length
 	else { // found
 		remPlace(pos); //remove
 		this->length--; //count as removed
+		if (length == capacity / 2) { // decreasing size if equal
+			capacity /= 2;
+			TElem* temp_arr = new TElem[this->capacity]; // creating new arr
+			for (int i = 0; i <= this->length - 1; i++) { // copying arr contents
+				temp_arr[i] = this->arr[i];
+			}
+			delete[] this->arr;
+			this->arr = temp_arr;
+		}
 		return true; //exit with true
 	}
-
 } // Best case: Theta(1), Worst Case: Theta(n) = Average Case, General Case: O(n)
 
 
